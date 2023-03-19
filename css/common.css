@@ -23,17 +23,17 @@ button {
   cursor: pointer;
 }
 
- .gallery {
-   display: flex;
- }
+li {
+  list-style: none;
+}
 
- .gallery li {
-   display: block;
-   text-decoration: none;
-   flex-basis: calc((100% - 60px) / 3);
-   margin-right: 30px;
- }
 
- .gallery li:last-child {
-   margin-right: 0px;
- }
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+#boxes {
+  display: flex;
+}

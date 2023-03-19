@@ -1,66 +1,39 @@
-function getRandomHexColor() {
-    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-
-const divRef = document.querySelector('#boxes');
+// Получаем ссылку на элемент
+const inputRef = document.querySelector('input');
 const createBtnRef = document.querySelector('[data-create]');
 const destroyBtnRef = document.querySelector('[data-destroy]');
+const outputBoxesRef = document.querySelector('#boxes');
 
-createBtnRef.addEventListener('click', onBtnClick);
-
-function onBtnClick(event) {
-    const box = document.createElement('div');
-
-    box.style.backgroundColor = getRandomHexColor();
-
-    const value = '30px';
-
-    box.style.width = value;
-    box.style.height = value;
-
-    divRef.appendChild(box);
+// Функция для генерации случайных hex color
+function getRandomHexColor() {
+    return `#${Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, 0)}`;
 }
 
-console.log(divRef);
+let boxSize = 30;
+const boxStep = 10;
 
-//const createBoxes = amount => {
+// Хендлер  создания boxes
+function onCreateBtn(amount) {
+    let boxesMarkup = [];
+    amount = inputRef.value;
 
-// return box;
-//};
+    for (let i = 0; i < amount; i += 1) {
+        const boxEl = document.createElement('div');
+        boxEl.style.backgroundColor = getRandomHexColor();
+        boxEl.style.width = `${boxSize}px`;
+        boxEl.style.height = `${boxSize}px`;
+        boxesMarkup.push(boxEl);
+        boxSize += boxStep;
+    }
 
-destroyBtnRef.addEventListener('click', destroyBoxes);
-
-function destroyBoxes() {
-    divRef.innerHTML = '';
+    outputBoxesRef.append(...boxesMarkup);
 }
 
-for (let i = 1; i <= amount; i += 1) {
-    const box = document.createElement('div');
+// Хендлер  удаления boxes
+const onDestroyBoxes = () => (outputBoxesRef.innerHTML = '');
 
-    box.innerHTML = i;
-
-    box.style.backgroundColor = getRandomHexColor();
-
-    const value = '30px';
-
-    box.style.width = value + 10;
-    box.style.height = value;
-
-    divRef.appendChild(box);
-}
-
-let fragment = document.createDocumentFragment(); // HTML fragment
-let amount = 5; // items amount
-
-for (let i = 1; i <= amount; i++) {
-    let url = document.createElement('a');
-    let span = document.createElement('span');
-
-    span.innerHTML = i;
-    url.href = 'seriya-' + i;
-    url.appendChild(span);
-
-    fragment.appendChild(url);
-}
-
-document.body.appendChild(fragment);
+// Вешаем слушателя события
+createBtnRef.addEventListener('click', onCreateBtn);
+destroyBtnRef.addEventListener('click', onDestroyBoxes);

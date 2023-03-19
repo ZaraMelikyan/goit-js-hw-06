@@ -1,8 +1,8 @@
+// Получаем ссылку на элемент
 const inputRef = document.querySelector('#font-size-control');
-const spanRef = document.querySelector('#text');
+const textSpanRef = document.querySelector('#text');
 
-inputRef.addEventListener('input', onInputRangeChange);
-
-function onInputRangeChange(event) {
-    spanRef.style.fontSize = `${event.currentTarget.value}px`;
-}
+// Вешаем слушателя события и Handler для изменение font-size
+inputRef.addEventListener('input', () => {
+    textSpanRef.style.fontSize = `${inputRef.value}px`;
+});

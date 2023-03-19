@@ -1,18 +1,18 @@
-const refs = {
-    addBtn: document.querySelector('[data-action="increment"]'),
-    subBtn: document.querySelector('[data-action="decrement"]'),
-    counter: document.querySelector('#value'),
-};
+// Получаем ссылки на элементы
+const clickCounterSpanRef = document.querySelector('#value');
+const subtractBtnRef = clickCounterSpanRef.previousElementSibling;
+const addBtnRef = clickCounterSpanRef.nextElementSibling;
 
-let counterValue = 0;
+// Вешаем слушателя события и Handler изменения текста span на +1
+addBtnRef.addEventListener(
+    'click',
+    e =>
+        (clickCounterSpanRef.textContent =
+            Number(clickCounterSpanRef.textContent) + 1)
+);
 
-refs.addBtn.addEventListener('click', onAddBtnClick);
-refs.subBtn.addEventListener('click', onSubBtnClick);
-
-function onAddBtnClick(event) {
-    refs.counter.textContent = counterValue += 1;
-}
-
-function onSubBtnClick(event) {
-    refs.counter.textContent = counterValue -= 1;
-}
+// Вешаем слушателя события и Handler изменения текста span на -1
+subtractBtnRef.addEventListener(
+    'click',
+    e => (clickCounterSpanRef.textContent -= 1)
+);

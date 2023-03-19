@@ -1,10 +1,13 @@
-const itemsOfCategoriesRef = document.querySelectorAll('.item');
-console.log('Number of categories: ', itemsOfCategoriesRef.length);
+// Получаем ссылку на элемент
+const itemsRef = document.querySelectorAll('.item');
 
-itemsOfCategoriesRef.forEach(item => {
-    const titleOfCategoryRef = item.firstElementChild;
-    const elementsOfCategoryRef = item.querySelectorAll('li');
+//вывод в консоль количество категорий
+console.log('Number of categories: ', itemsRef.length);
 
-    console.log('Category: ', titleOfCategoryRef.textContent);
-    console.log('Elements: ', elementsOfCategoryRef.length);
+itemsRef.forEach(item => {
+    //вывод в консоль текст заголовка элемента
+    console.log('Category: ', item.firstElementChild.textContent);
+
+    //вывод в консоль количество элементов в категории
+    console.log('Elements: ', item.lastElementChild.children.length);
 });

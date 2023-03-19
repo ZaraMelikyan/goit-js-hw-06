@@ -1,22 +1,15 @@
+// Получаем ссылку на элемент
 const inputRef = document.querySelector('#validation-input');
 
-inputRef.addEventListener('blur', OnInputBlur);
-
-function OnInputBlur(event) {
-    const validLength = Number(event.currentTarget.dataset.length);
-
-    if (event.currentTarget.value.length === validLength) {
-        inputRef.classList.add('valid');
+// Хендлер проверki длины значения inputa
+const onValidationInputBlur = () => {
+    if (inputRef.value.length === Number(inputRef.dataset.length)) {
         inputRef.classList.remove('invalid');
-        return;
+        return inputRef.classList.add('valid');
     }
-
-    if (event.currentTarget.value === '') {
-        inputRef.classList.remove('valid');
-        inputRef.classList.remove('invalid');
-        return;
-    }
-
-    inputRef.classList.add('invalid');
     inputRef.classList.remove('valid');
-}
+    return inputRef.classList.add('invalid');
+};
+
+// Вешаем слушателя события
+inputRef.addEventListener('blur', onValidationInputBlur);

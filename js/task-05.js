@@ -1,16 +1,16 @@
-const refs = {
-    nameInput: document.querySelector('#name-input'),
-    nameOutput: document.querySelector('#name-output'),
-};
+// Получаем ссылки на элементы
+const inputRef = document.querySelector('#name-input');
+const textOutputRef = document.querySelector('#name-output');
 
-refs.nameInput.addEventListener('input', onInputChange);
-
-function onInputChange(event) {
-    if (event.currentTarget.value === '') {
-        refs.nameOutput.textContent = 'Anonymous';
-
+// Записываем в span значение input с проверкой на ввод
+const onNameInput = e => {
+    if (e.currentTarget.value === '') {
+        textOutputRef.textContent = 'Anonymous';
         return;
     }
 
-    refs.nameOutput.textContent = event.currentTarget.value;
-}
+    return (textOutputRef.textContent = e.currentTarget.value);
+};
+
+// Вешаем слушателя события
+inputRef.addEventListener('input', onNameInput);

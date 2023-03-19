@@ -1,15 +1,31 @@
-const ingredients = ['Potatoes', 'Mushrooms', 'Garlic', 'Tomatos', 'Herbs', 'Condiments'];
+const ingredients = [
+    'Potatoes',
+    'Mushrooms',
+    'Garlic',
+    'Tomatos',
+    'Herbs',
+    'Condiments',
+];
 
-const ingredientsRef = document.querySelector('#ingredients');
+// Получаем ссылку на элемент
+const ingredientsListRef = document.querySelector('#ingredients');
 
+// Функция для создания одного элемента
 const makeIngredient = ingredient => {
-  const item = document.createElement('li');
-  item.textContent = ingredient;
-  item.classList.add('item');
+    // Создаем элемент
+    const item = document.createElement('li');
 
-  return item;
+    // Добавляем контент элемента
+    item.textContent = ingredient;
+
+    // Добавляем класс элемента
+    item.classList.add('item');
+
+    return item;
 };
 
-const makeIngredients = ingredients.map(makeIngredient);
+// Получаем массив всех элементов в ul
+const makeAllIngredients = ingredients.map(makeIngredient);
 
-ingredientsRef.append(...makeIngredients);
+// Добавляем элементы в Dom
+ingredientsListRef.append(...makeAllIngredients);

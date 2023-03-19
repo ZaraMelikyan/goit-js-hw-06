@@ -32,7 +32,11 @@ function onCreateBtn(amount) {
 }
 
 // Хендлер  удаления boxes
-const onDestroyBoxes = () => (outputBoxesRef.innerHTML = '');
+const onDestroyBoxes = () => {
+    outputBoxesRef.innerHTML = '';
+    inputRef.value = '';
+    boxSize = 30;
+};
 
 // Вешаем слушателя события
 createBtnRef.addEventListener('click', onCreateBtn);
